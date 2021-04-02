@@ -4,7 +4,7 @@ import * as Uuid from "uuid";
 import * as Belt_Array from "bs-platform/lib/es6/belt_Array.js";
 
 function update(newState) {
-  window.dispatchEvent(new CreateEvent("state-update", {
+  window.dispatchEvent(new CustomEvent("state-update", {
             detail: newState
           }));
   return newState;

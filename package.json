@@ -5,7 +5,8 @@
   "main": "src/index.bs.js",
   "scripts": {
     "build": "bsb -make-world -clean-world",
-    "build:watch": "bsb -make-world -clean-world -w"
+    "build:watch": "bsb -make-world -clean-world -w",
+    "start": "parcel src/public/index.html -p 8080"
   },
   "author": "",
   "license": "ISC",
@@ -13,6 +14,7 @@
     "bs-platform": "^9.0.2"
   },
   "dependencies": {
+    "parcel-bundler": "^1.12.5",
     "uuid": "^8.3.2"
   }
 }
