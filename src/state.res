@@ -9,7 +9,7 @@ type todo = {
 	createdAt: float
 }
 type state = {
-	error: string,
+	error: option<string>,
 	list: array<todo>
 }
 type detail<'a> = {
@@ -37,10 +37,10 @@ let addTodo = (state, todo: createTodo) => {
 	update({ ...state, list: Belt.Array.concat(state.list, [_todo]) })
 }
 
-let clearError = (state) => update({ ...state, error: "" })
+let clearError = (state) => update({ ...state, error: None })
 
 let init = () => update({
-	error: "",
+	error: Some(""),
 	list: []
 })
 
@@ -50,4 +50,4 @@ let removeTodo = (state, id) => {
 	->x => update({ ...state, list: x })
 }
 
-let setError = (state, error) => update({ ...state, error })
+let setError = (state, error) => update({ ...state, error: Some(error) })

@@ -9,7 +9,7 @@ type todo = {
 	createdAt: float
 }
 type state = {
-	error: string,
+	error: option<string>,
 	list: array<todo>
 }
 type detail<'a> = {

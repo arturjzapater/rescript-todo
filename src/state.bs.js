@@ -29,7 +29,7 @@ function addTodo(state, todo) {
 
 function clearError(state) {
   return update({
-              error: "",
+              error: undefined,
               list: state.list
             });
 }
