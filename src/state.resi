@@ -1,5 +1,8 @@
 @genType.import("./state")
+type createTodo
 type state
-type todo
 
-let addTodo: (state, todo) => state
+let addTodo: (state, createTodo) => state
+let clearError: state => state
+let removeTodo: (state, string) => state
+let setError: (state, string) => state

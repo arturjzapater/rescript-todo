@@ -5,11 +5,14 @@
   "main": "src/index.bs.js",
   "scripts": {
     "build": "bsb -make-world -clean-world",
-	 "build:watch": "bsb -make-world -clean-world -w"
+    "build:watch": "bsb -make-world -clean-world -w"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "bs-platform": "^9.0.2"
+  },
+  "dependencies": {
+    "uuid": "^8.3.2"
   }
 }
