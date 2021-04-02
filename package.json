@@ -5,7 +5,7 @@
   "main": "src/index.bs.js",
   "scripts": {
     "build": "bsb -make-world -clean-world",
-	 "start": "bsb -make-world -clean-world -w"
+	 "build:watch": "bsb -make-world -clean-world -w"
   },
   "author": "",
   "license": "ISC",

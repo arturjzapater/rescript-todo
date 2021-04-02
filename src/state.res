@@ -3,23 +3,22 @@ type todo = {
 	description: string,
 	createdAt: int
 }
-
 type state = {
 	list: array<todo>
 }
+type detail = {
+	detail: state
+}
+@bs.new external createEvent: (string, detail) => detail = "CreateEvent"
+@bs.scope("window") @bs.val external dispatchEvent: (detail) => bool = "dispatchEvent"
 
-type stateManager = {
-	state: state,
-	update: state => unit
+
+let update = (newState: state) => {
+	createEvent("state-update", { detail: newState })
+	->dispatchEvent
+	->(_x) => ()
+
+	newState
 }
 
-let stateFactory: state => stateManager = init => {
-	let state = init
-
-	{ 
-		state: state,
-		update: x => {
-			let state = x
-		}
-	}
-}
+let addTodo = (state, todo) => update({ ...state, list: Belt.Array.concat(state.list, [todo]) })
