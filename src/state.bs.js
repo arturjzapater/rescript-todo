@@ -34,6 +34,13 @@ function clearError(state) {
             });
 }
 
+function init(param) {
+  return update({
+              error: "",
+              list: []
+            });
+}
+
 function removeTodo(state, id) {
   var x = Belt_Array.keep(state.list, (function (x) {
           return x.id !== id;
@@ -54,6 +61,7 @@ function setError(state, error) {
 export {
   addTodo ,
   clearError ,
+  init ,
   removeTodo ,
   setError ,
   

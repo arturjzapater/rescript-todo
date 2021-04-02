@@ -39,6 +39,11 @@ let addTodo = (state, todo: createTodo) => {
 
 let clearError = (state) => update({ ...state, error: "" })
 
+let init = () => update({
+	error: "",
+	list: []
+})
+
 let removeTodo = (state, id) => {
 	state.list
 	->Belt.Array.keep(x => x.id != id)
