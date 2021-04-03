@@ -12,13 +12,11 @@ function update(newState) {
 
 function addTodo(state, todo) {
   var _todo_id = Uuid.v4();
-  var _todo_title = todo.title;
-  var _todo_description = todo.description;
+  var _todo_text = todo.text;
   var _todo_createdAt = Date.now();
   var _todo = {
     id: _todo_id,
-    title: _todo_title,
-    description: _todo_description,
+    text: _todo_text,
     createdAt: _todo_createdAt
   };
   return update({

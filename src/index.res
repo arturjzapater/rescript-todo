@@ -3,7 +3,8 @@
 addEventListener("load", State.init)
 addEventListener(
 	"state-update",
-	event => 
+	event => {
 		Template.template(event["detail"])
 		-> Template.render("app")
+	}
 )

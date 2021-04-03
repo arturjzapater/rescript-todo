@@ -1,27 +1,18 @@
-type element = {
-	@bs.set "innerHTML": string
-}
-@bs.scope("document") @bs.val external getElementById: (string) => element = "getElementById"
-
 let errorBubble = Belt.Option.mapWithDefault(_, "", x => `<div class="error-msg">${x}</div>`)
 
 let form = (state: State.state) => `
 	<form>
 		${errorBubble(state.error)}
-		<label>
-			<span>Title:</span>
-			<input id="title" name="title" type="text" />
-		</label>
-		<label>
-			<span>Description:</span>
-			<input id="description" name="description" type="text" />
+		<label class="form__field">
+			<span class="form__field--text">Title:</span>
+			<input class="form__field--input" id="text" name="text" type="text" />
 		</label>
 		<button id="add-todo">Add Todo</button>
 	</form>
 `
 
 let makeTodo = (todo: State.todo) => `
-	<article id="${todo.id}">${todo.title}</article>
+	<article id="${todo.id}">${todo.text}</article>
 `
 
 let todoList = (list: array<State.todo>) => `
@@ -35,4 +26,4 @@ let template = (state: State.state) => `
 	${todoList(state.list)}
 `
 
-let render = (html: string, id: string) => getElementById(id)["innerHTML"] = html
+let render = (html: string, id: string) => Helpers.Dom.getElementById(id)["innerHTML"] = html

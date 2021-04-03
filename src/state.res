@@ -1,11 +1,9 @@
 type createTodo = {
-	title: string,
-	description: string
+	text: string,
 }
 type todo = {
 	id: string,
-	title: string,
-	description: string,
+	text: string,
 	createdAt: float
 }
 type state = {
@@ -30,8 +28,7 @@ let update = (newState: state) => {
 let addTodo = (state, todo: createTodo) => {
 	let _todo = {
 		id: uuid(),
-		title: todo.title,
-		description: todo.description,
+		text: todo.text,
 		createdAt: Js.Date.now()
 	}
 	update({ ...state, list: Belt.Array.concat(state.list, [_todo]) })

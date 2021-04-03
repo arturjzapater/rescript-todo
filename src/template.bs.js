@@ -10,11 +10,11 @@ function errorBubble(__x) {
 }
 
 function form(state) {
-  return "\n	<form>\n		" + errorBubble(state.error) + "\n		<label>\n			<span>Title:</span>\n			<input id=\"title\" name=\"title\" type=\"text\" />\n		</label>\n		<label>\n			<span>Description:</span>\n			<input id=\"description\" name=\"description\" type=\"text\" />\n		</label>\n		<button id=\"add-todo\">Add Todo</button>\n	</form>\n";
+  return "\n	<form>\n		" + errorBubble(state.error) + "\n		<label class=\"form__field\">\n			<span class=\"form__field--text\">Title:</span>\n			<input class=\"form__field--input\" id=\"text\" name=\"text\" type=\"text\" />\n		</label>\n		<button id=\"add-todo\">Add Todo</button>\n	</form>\n";
 }
 
 function makeTodo(todo) {
-  return "\n	<article id=\"" + todo.id + "\">" + todo.title + "</article>\n";
+  return "\n	<article id=\"" + todo.id + "\">" + todo.text + "</article>\n";
 }
 
 function todoList(list) {

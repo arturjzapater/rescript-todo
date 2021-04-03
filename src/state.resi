@@ -1,11 +1,9 @@
 type createTodo = {
-	title: string,
-	description: string
+	text: string,
 }
 type todo = {
 	id: string,
-	title: string,
-	description: string,
+	text: string,
 	createdAt: float
 }
 type state = {
