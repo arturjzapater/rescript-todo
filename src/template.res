@@ -38,9 +38,6 @@ let handleClick = (state, event) => {
 }
 
 let events = (state: State.state, id: string) => {
-	let body = Helpers.Dom.body
-	body["innerHTML"] = body["innerHTML"]
-
 	Helpers.Dom.getElementById(id)["addEventListener"]("click", handleClick(state))
 	()
 }
@@ -51,7 +48,8 @@ let template = (state: State.state) => `
 `
 
 let render = (html: string, id: string) => {
-	let element = Helpers.Dom.getElementById(id)
-	element["innerHTML"] = html
+	Helpers.Dom.getElementById(id)["innerHTML"] = html
+	let body = Helpers.Dom.body
+	body["innerHTML"] = body["innerHTML"]
 	id
 }

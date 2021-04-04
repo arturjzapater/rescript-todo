@@ -23,8 +23,6 @@ function todoList(list) {
 }
 
 function events(state, id) {
-  var body = document.body;
-  body.innerHTML = body.innerHTML;
   document.getElementById(id).addEventListener("click", (function (param) {
           param.preventDefault();
           var match = param.target.id;
@@ -44,8 +42,10 @@ function template(state) {
 }
 
 function render(html, id) {
-  var element = document.getElementById(id);
-  element.innerHTML = html;
+  var tmp = document.getElementById(id);
+  tmp.innerHTML = html;
+  var body = document.body;
+  body.innerHTML = body.innerHTML;
   return id;
 }
 

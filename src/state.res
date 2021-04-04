@@ -20,7 +20,7 @@ type detail<'a> = {
 let update = (newState: state) => {
 	createEvent("state-update", { detail: newState })
 	->dispatchEvent
-	->(_x) => ()
+	->_ => ()
 
 	newState
 }
