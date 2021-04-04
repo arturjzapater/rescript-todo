@@ -11,15 +11,15 @@ function errorBubble(__x) {
 }
 
 function form(state) {
-  return "\n	<form>\n		" + errorBubble(state.error) + "\n		<label class=\"form__field\">\n			<span class=\"form__field--text\">Title:</span>\n			<input class=\"form__field--input\" id=\"text\" name=\"text\" type=\"text\" />\n		</label>\n		<button id=\"add-todo\">Add Todo</button>\n	</form>\n";
+  return "\n	<form class=\"container form\">\n		" + errorBubble(state.error) + "\n		<label class=\"form__field\">\n			<span class=\"form__field--text\">Don't</span>\n			<input class=\"form__field--input\" id=\"text\" name=\"text\" type=\"text\" />\n		</label>\n		<button class=\"form__button\" id=\"add-todo\">Add Todon't</button>\n	</form>\n";
 }
 
 function makeTodo(todo) {
-  return "\n	<article id=\"" + todo.id + "\">" + todo.text + "</article>\n";
+  return "\n	<article class=\"list__item\" id=\"" + todo.id + "\">" + todo.text + "</article>\n";
 }
 
 function todoList(list) {
-  return "\n	<section id=\"todo-list\">\n		" + Belt_Array.joinWith(list, "\n", makeTodo) + "\n	</section>\n";
+  return "\n	<section class=\"container list\" id=\"todo-list\">\n		" + Belt_Array.joinWith(list, "\n", makeTodo) + "\n	</section>\n";
 }
 
 function events(state, id) {

@@ -1,22 +1,22 @@
 let errorBubble = Belt.Option.mapWithDefault(_, "", x => `<div class="error-msg">${x}</div>`)
 
 let form = (state: State.state) => `
-	<form>
+	<form class="container form">
 		${errorBubble(state.error)}
 		<label class="form__field">
-			<span class="form__field--text">Title:</span>
+			<span class="form__field--text">Don't</span>
 			<input class="form__field--input" id="text" name="text" type="text" />
 		</label>
-		<button id="add-todo">Add Todo</button>
+		<button class="form__button" id="add-todo">Add Todon't</button>
 	</form>
 `
 
 let makeTodo = (todo: State.todo) => `
-	<article id="${todo.id}">${todo.text}</article>
+	<article class="list__item" id="${todo.id}">${todo.text}</article>
 `
 
 let todoList = (list: array<State.todo>) => `
-	<section id="todo-list">
+	<section class="container list" id="todo-list">
 		${Belt.Array.joinWith(list, "\n", makeTodo)}
 	</section>
 `
