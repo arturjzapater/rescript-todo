@@ -2,12 +2,13 @@
 
 import * as Uuid from "uuid";
 import * as Belt_Array from "bs-platform/lib/es6/belt_Array.js";
+import * as Belt_Option from "bs-platform/lib/es6/belt_Option.js";
 
 function update(newState) {
   window.dispatchEvent(new CustomEvent("state-update", {
             detail: newState
           }));
-  return newState;
+  
 }
 
 function addTodo(state, todo) {
@@ -17,6 +18,7 @@ function addTodo(state, todo) {
   var _todo = {
     id: _todo_id,
     text: _todo_text,
+    finished: false,
     createdAt: _todo_createdAt
   };
   return update({
@@ -39,7 +41,7 @@ function init(param) {
             });
 }
 
-function removeTodo(state, id) {
+function removeTodo(id, state) {
   var x = Belt_Array.keep(state.list, (function (x) {
           return x.id !== id;
         }));
@@ -56,12 +58,35 @@ function setError(state, error) {
             });
 }
 
+function setFinished(id, state) {
+  var partial_arg = state.list;
+  var x = Belt_Option.getWithDefault(Belt_Option.flatMap(Belt_Array.getIndexBy(state.list, (function (x) {
+                  return x.id === id;
+                })), (function (param) {
+              return Belt_Option.map(Belt_Option.map(Belt_Array.get(partial_arg, param), (function (x) {
+                                return {
+                                        id: x.id,
+                                        text: x.text,
+                                        finished: !x.finished,
+                                        createdAt: x.createdAt
+                                      };
+                              })), (function (param$1) {
+                            return Belt_Array.concat(Belt_Array.concat(Belt_Array.slice(partial_arg, 0, param), [param$1]), Belt_Array.sliceToEnd(partial_arg, param + 1 | 0));
+                          }));
+            })), state.list);
+  return update({
+              error: state.error,
+              list: x
+            });
+}
+
 export {
   addTodo ,
   clearError ,
   init ,
   removeTodo ,
   setError ,
+  setFinished ,
   
 }
 /* uuid Not a pure module */

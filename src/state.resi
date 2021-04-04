@@ -4,6 +4,7 @@ type createTodo = {
 type todo = {
 	id: string,
 	text: string,
+	finished: bool,
 	createdAt: float
 }
 type state = {
@@ -14,8 +15,9 @@ type detail<'a> = {
 	detail: 'a
 }
 
-let addTodo: (state, createTodo) => state
-let clearError: state => state
-let init: () => state
-let removeTodo: (state, string) => state
-let setError: (state, string) => state
+let addTodo: (state, createTodo) => unit
+let clearError: state => unit
+let init: () => unit
+let removeTodo: (string, state) => unit
+let setError: (state, string) => unit
+let setFinished: (string, state) => unit

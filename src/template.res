@@ -12,7 +12,10 @@ let form = (state: State.state) => `
 `
 
 let makeTodo = (todo: State.todo) => `
-	<article class="list__item" id="${todo.id}">${todo.text}</article>
+	<article class="list__item">
+		<span class="list__text ${todo.finished ? "done" : ""}" id="todo-${todo.id}">${todo.text}</span>
+		<button class="list__button" id="remove-${todo.id}">X</button>
+	</article>
 `
 
 let todoList = (list: array<State.todo>) => `
@@ -28,12 +31,24 @@ let addTodo = (state: State.state) => {
 	)
 }
 
+let removeTodo = (state: State.state, id: string) =>
+	id
+	-> Js.String2.replace("remove-", "")
+	-> State.removeTodo(state)
+
+let updateTodo = (state: State.state, id: string) =>
+	id
+	-> Js.String2.replace("todo-", "")
+	-> State.setFinished(state)
+
 let handleClick = (state, event) => {
 	event["preventDefault"]()
 
 	switch event["target"]["id"] {
 	| "add-todo" => addTodo(state)
-	| _ => state
+	| x when Js.String.startsWith("todo", x) => updateTodo(state, x)
+	| x when Js.String.startsWith("remove", x) => removeTodo(state, x)
+	| _ => ()
 	}
 }
 

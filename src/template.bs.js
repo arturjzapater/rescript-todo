@@ -15,7 +15,9 @@ function form(state) {
 }
 
 function makeTodo(todo) {
-  return "\n	<article class=\"list__item\" id=\"" + todo.id + "\">" + todo.text + "</article>\n";
+  return "\n	<article class=\"list__item\">\n		<span class=\"list__text " + (
+          todo.finished ? "done" : ""
+        ) + "\" id=\"todo-" + todo.id + "\">" + todo.text + "</span>\n		<button class=\"list__button\" id=\"remove-" + todo.id + "\">X</button>\n	</article>\n";
 }
 
 function todoList(list) {
@@ -25,13 +27,17 @@ function todoList(list) {
 function events(state, id) {
   document.getElementById(id).addEventListener("click", (function (param) {
           param.preventDefault();
-          var match = param.target.id;
-          if (match === "add-todo") {
+          var x = param.target.id;
+          if (x === "add-todo") {
             return State$Todo.addTodo(state, {
                         text: document.getElementById("text").value
                       });
+          } else if (x.startsWith("todo")) {
+            return State$Todo.setFinished(x.replace("todo-", ""), state);
+          } else if (x.startsWith("remove")) {
+            return State$Todo.removeTodo(x.replace("remove-", ""), state);
           } else {
-            return state;
+            return ;
           }
         }));
   
