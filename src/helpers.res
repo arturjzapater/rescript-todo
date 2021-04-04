@@ -1,7 +1,8 @@
 module Dom = {
-	type element = {
+	@bs.scope("document") @bs.val external getElementById: (string) => {
+		"addEventListener": 'a,
 		@bs.set "innerHTML": string,
 		"value": string
-	}
-	@bs.scope("document") @bs.val external getElementById: (string) => element = "getElementById"
+	} = "getElementById"
+	@bs.scope("document") @bs.val external body: { @bs.set "innerHTML": string } = "body"
 }

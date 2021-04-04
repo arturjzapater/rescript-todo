@@ -7,7 +7,8 @@ import * as Template$Todo from "./template.bs.js";
 Curry._2(window.addEventListener, "load", State$Todo.init);
 
 Curry._2(window.addEventListener, "state-update", (function ($$event) {
-        return Template$Todo.render(Template$Todo.template($$event.detail), "app");
+        var __x = Template$Todo.render(Template$Todo.template($$event.detail), "app");
+        return Template$Todo.events($$event.detail, __x);
       }));
 
 export {

@@ -21,9 +21,37 @@ let todoList = (list: array<State.todo>) => `
 	</section>
 `
 
+let addTodo = (state: State.state) => {
+	State.addTodo(
+		state,
+		{ text: Helpers.Dom.getElementById("text")["value"] }
+	)
+}
+
+let handleClick = (state, event) => {
+	event["preventDefault"]()
+
+	switch event["target"]["id"] {
+	| "add-todo" => addTodo(state)
+	| _ => state
+	}
+}
+
+let events = (state: State.state, id: string) => {
+	let body = Helpers.Dom.body
+	body["innerHTML"] = body["innerHTML"]
+
+	Helpers.Dom.getElementById(id)["addEventListener"]("click", handleClick(state))
+	()
+}
+
 let template = (state: State.state) => `
 	${form(state)}
 	${todoList(state.list)}
 `
 
-let render = (html: string, id: string) => Helpers.Dom.getElementById(id)["innerHTML"] = html
+let render = (html: string, id: string) => {
+	let element = Helpers.Dom.getElementById(id)
+	element["innerHTML"] = html
+	id
+}
