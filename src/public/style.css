@@ -74,6 +74,7 @@ header {
 	background: transparent;
 	border: none;
 	cursor: pointer;
+	padding: 10px;
 }
 
 .list__item {
@@ -81,7 +82,6 @@ header {
 	justify-content: space-between;
 	align-items: center;
 
-	padding: 10px;
 	margin: 5px 5px;
 }
 
@@ -96,6 +96,7 @@ header {
 
 .list__text {
 	flex-grow: 1;
+	padding: 10px;
 }
 
 .list__text::before {
