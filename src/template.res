@@ -1,14 +1,14 @@
 let _errorBubble = x => `
-	<div class="error">
-		<span class="error__text">${x}</span>
-		<button class="list__button" id="close-error">X</button>
-	</div>
+	<span class="error__text">${x}</span>
+	<button class="list__button" id="close-error">X</button>
 `
 let errorBubble = Belt.Option.mapWithDefault(_, "", _errorBubble)
 
 let form = (state: State.state) => `
-	<form class="container form">
+	<div class="error-container ${Belt.Option.isSome(state.error) ? "error" : ""}">
 		${errorBubble(state.error)}
+	</div>
+	<form class="container form">
 		<label class="form__field">
 			<span class="form__field--text">Don't</span>
 			<input class="form__field--input" id="text" name="text" type="text" />

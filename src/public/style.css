@@ -9,16 +9,18 @@ body {
 	color: #f1a77c;
 	min-height: 100%;
 	font-family: Verdana, Geneva, Tahoma, sans-serif;
-
-	display: flex;
-	flex-direction: column;
-	align-items: center;
 }
 
 header {
 	height: 60px;
 	padding: 10px 30px;
 	width: 100%;
+}
+
+#app {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 .container {
@@ -33,13 +35,16 @@ header {
 	border: 1px solid #ca1d11;
 	background-color: #ee9f99;
 	color: #ca1d11;
+}
 
-	margin-bottom: 20px;
-	width: 100%;
+.error-container {
+	margin: 20px 0px 10px;
+	min-height: 41px;
+	min-width: 60vw;
 }
 
 .error__text {
-	padding: 10px;
+	padding: 10px 20px;
 }
 
 .form {
@@ -85,7 +90,7 @@ header {
 
 .list {
 	max-height: 70vh;
-	min-width: 40vw;
+	min-width: 45vw;
 	overflow-y: auto;
 }
 

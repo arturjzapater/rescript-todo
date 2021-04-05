@@ -5,11 +5,13 @@ import * as State$Todo from "./state.bs.js";
 import * as Belt_Option from "bs-platform/lib/es6/belt_Option.js";
 
 function _errorBubble(x) {
-  return "\n	<div class=\"error\">\n		<span class=\"error__text\">" + x + "</span>\n		<button class=\"list__button\" id=\"close-error\">X</button>\n	</div>\n";
+  return "\n	<span class=\"error__text\">" + x + "</span>\n	<button class=\"list__button\" id=\"close-error\">X</button>\n";
 }
 
 function form(state) {
-  return "\n	<form class=\"container form\">\n		" + Belt_Option.mapWithDefault(state.error, "", _errorBubble) + "\n		<label class=\"form__field\">\n			<span class=\"form__field--text\">Don't</span>\n			<input class=\"form__field--input\" id=\"text\" name=\"text\" type=\"text\" />\n		</label>\n		<button class=\"form__button\" id=\"add-todo\">Add Todon't</button>\n	</form>\n";
+  return "\n	<div class=\"error-container " + (
+          Belt_Option.isSome(state.error) ? "error" : ""
+        ) + "\">\n		" + Belt_Option.mapWithDefault(state.error, "", _errorBubble) + "\n	</div>\n	<form class=\"container form\">\n		<label class=\"form__field\">\n			<span class=\"form__field--text\">Don't</span>\n			<input class=\"form__field--input\" id=\"text\" name=\"text\" type=\"text\" />\n		</label>\n		<button class=\"form__button\" id=\"add-todo\">Add Todon't</button>\n	</form>\n";
 }
 
 function makeTodo(todo) {
