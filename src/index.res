@@ -3,9 +3,9 @@
 addEventListener("load", State.init)
 addEventListener(
 	"state-update",
-	event => {
-		Template.template(event["detail"])
+	event =>
+		event["detail"]
+		-> Template.template
 		-> Template.render("app")
 		-> Template.events(event["detail"], _)
-	}
 )

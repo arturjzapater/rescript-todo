@@ -14,6 +14,7 @@ type state = {
 type detail<'a> = {
 	detail: 'a
 }
+
 @bs.new external createEvent: (string, detail<'a>) => detail<'a> = "CustomEvent"
 @bs.scope("window") @bs.val external dispatchEvent: (detail<'a>) => bool = "dispatchEvent"
 @bs.module("uuid") external uuid: unit => string = "v4"
