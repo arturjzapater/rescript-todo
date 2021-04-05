@@ -22,7 +22,7 @@ function addTodo(state, todo) {
     createdAt: _todo_createdAt
   };
   return update({
-              error: state.error,
+              error: undefined,
               list: Belt_Array.concat(state.list, [_todo])
             });
 }
@@ -36,7 +36,7 @@ function clearError(state) {
 
 function init(param) {
   return update({
-              error: "",
+              error: undefined,
               list: []
             });
 }

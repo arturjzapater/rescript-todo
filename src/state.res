@@ -18,11 +18,10 @@ type detail<'a> = {
 @bs.scope("window") @bs.val external dispatchEvent: (detail<'a>) => bool = "dispatchEvent"
 @bs.module("uuid") external uuid: unit => string = "v4"
 
-let update = (newState: state) => {
+let update = (newState: state) =>
 	createEvent("state-update", { detail: newState })
 	-> dispatchEvent
 	-> _ => ()
-}
 
 let updateIndex = (xs: array<'a>, index: int, x: 'a) =>
 	xs
@@ -43,13 +42,13 @@ let addTodo = (state, todo: createTodo) => {
 		finished: false,
 		createdAt: Js.Date.now()
 	}
-	update({ ...state, list: Belt.Array.concat(state.list, [_todo]) })
+	update({ error: None, list: Belt.Array.concat(state.list, [_todo]) })
 }
 
 let clearError = (state) => update({ ...state, error: None })
 
 let init = () => update({
-	error: Some(""),
+	error: None,
 	list: []
 })
 

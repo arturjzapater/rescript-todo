@@ -1,4 +1,10 @@
-let errorBubble = Belt.Option.mapWithDefault(_, "", x => `<div class="error-msg">${x}</div>`)
+let _errorBubble = x => `
+	<div class="error">
+		<span class="error__text">${x}</span>
+		<button class="list__button" id="close-error">X</button>
+	</div>
+`
+let errorBubble = Belt.Option.mapWithDefault(_, "", _errorBubble)
 
 let form = (state: State.state) => `
 	<form class="container form">
@@ -25,18 +31,20 @@ let todoList = (list: array<State.todo>) => `
 `
 
 let addTodo = (state: State.state) => {
-	State.addTodo(
-		state,
-		{ text: Helpers.Dom.getElementById("text")["value"] }
-	)
+	let text = Helpers.Dom.getElementById("text")["value"]
+
+	switch text {
+	| "" => State.setError(state, "You must add a description")
+	| text => State.addTodo(state, { text: text })
+	}
 }
 
-let removeTodo = (state: State.state, id: string) =>
+let removeTodo = (state: State.state, id) =>
 	id
 	-> Js.String2.replace("remove-", "")
 	-> State.removeTodo(state)
 
-let updateTodo = (state: State.state, id: string) =>
+let updateTodo = (state: State.state, id) =>
 	id
 	-> Js.String2.replace("todo-", "")
 	-> State.setFinished(state)
@@ -46,23 +54,22 @@ let handleClick = (state, event) => {
 
 	switch event["target"]["id"] {
 	| "add-todo" => addTodo(state)
+	| "close-error" => State.clearError(state)
 	| x when Js.String.startsWith("todo", x) => updateTodo(state, x)
 	| x when Js.String.startsWith("remove", x) => removeTodo(state, x)
 	| _ => ()
 	}
 }
 
-let events = (state: State.state, id: string) => {
+let events = (state: State.state, id) =>
 	Helpers.Dom.getElementById(id)["addEventListener"]("click", handleClick(state))
-	()
-}
 
 let template = (state: State.state) => `
 	${form(state)}
 	${todoList(state.list)}
 `
 
-let render = (html: string, id: string) => {
+let render = (html, id) => {
 	Helpers.Dom.getElementById(id)["innerHTML"] = html
 	let body = Helpers.Dom.body
 	body["innerHTML"] = body["innerHTML"]
